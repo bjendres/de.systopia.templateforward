@@ -1,6 +1,6 @@
 {
-  "CRM_Mailing_Page_Confirm": {
-    "id": "1",
-    "target": "https:\/\/www.lmgtfy.com\/url"
+  "CRM_Contact_Page_View_Summary": {
+    "cid": "1",
+    "forward_target": "https:\/\/www.systopia.de"
   }
 }
