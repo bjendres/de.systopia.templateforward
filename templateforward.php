@@ -149,6 +149,16 @@ function templateforward_civicrm_entityTypes(&$entityTypes) {
   _templateforward_civix_civicrm_entityTypes($entityTypes);
 }
 
+/**
+ * Hook implementation: Inject JS code adjusting summary view
+ */
+function templateforward_civicrm_pageRun(&$page) {
+  $page_name = $page->getVar('_name');
+  if (CRM_Templateforward_Config::has_forward($page_name)) {
+    CRM_Templateforward_ForwardHandler::forward($page, $page_name);
+  }
+}
+
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**
