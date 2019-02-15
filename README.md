@@ -2,7 +2,7 @@
 
 ![Screenshot](/images/screenshot.png)
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This extension implements page forwards for defined pages. Configuration can be done in Config.php
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
