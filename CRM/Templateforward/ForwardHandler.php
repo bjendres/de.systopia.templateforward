@@ -35,7 +35,40 @@ class CRM_Templateforward_ForwardHandler {
         $forward_target = $value;
         continue;
       }
-      if (CRM_Utils_Request::retrieveValue($key, 'String') != $value) {
+      else if ($key == 'mailing_profiles') {
+        $contact_id = CRM_Utils_Request::retrieve('cid', 'Integer');
+        $subscribe_id = CRM_Utils_Request::retrieve('sid', 'Integer');
+        $hash = CRM_Utils_Request::retrieve('h', 'String');
+
+        if (!$contact_id ||
+          !$subscribe_id ||
+          !$hash) {
+          CRM_Core_Error::debug_log_message("[de.systopia.templateforward] invalid url Parameters. ContactId: {$contact_id}, subscriberId: {$subscribe_id}, Hash: {$hash}");
+          return;
+        }
+        $se = &CRM_Mailing_Event_BAO_Subscribe::verify(
+          $contact_id,
+          $subscribe_id,
+          $hash
+        );
+        if (!$se) {
+          CRM_Core_Error::debug_log_message("[de.systopia.templateforward] Verification of CRM_Mailing_Event_BAO_Subscribe failed. ContactId: {$contact_id}, subscriberId: {$subscribe_id}, Hash: {$hash}");
+          return;
+        }
+        $group_id = $se->group_id;
+        foreach ($value as $mailing_profile_key => $mailing_profile_value) {
+          if ($mailing_profile_value['group_id'] == $group_id) {
+            $forward_target = $mailing_profile_value['profile_forward'];
+            if (!empty($forward_target)) {
+              CRM_Utils_System::redirect($forward_target);
+            }
+            CRM_Core_Error::debug_log_message("[de.systopia.templateforward] Invalid forward target '{$forward_target}' for groupId: {$group_id}");
+            return;
+          }
+        }
+        CRM_Core_Error::debug_log_message("[de.systopia.templateforward] No valid group found for request. GroupID: {$group_id}");
+      }
+      else if (CRM_Utils_Request::retrieveValue($key, 'String') != $value) {
         return;
       }
     }
