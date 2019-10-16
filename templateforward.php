@@ -1,5 +1,20 @@
 <?php
 
+/*-------------------------------------------------------+
+| Systopia Template Forwarder                            |
+| Copyright (C) 2019 SYSTOPIA                            |
+| Author: P. Batroff (batroff@systopia.de)               |
+| http://www.systopia.de/                                |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++--------------------------------------------------------*/
+
 require_once 'templateforward.civix.php';
 use CRM_Templateforward_ExtensionUtil as E;
 
@@ -132,6 +147,16 @@ function templateforward_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) 
  */
 function templateforward_civicrm_entityTypes(&$entityTypes) {
   _templateforward_civix_civicrm_entityTypes($entityTypes);
+}
+
+/**
+ * Hook implementation: Inject JS code adjusting summary view
+ */
+function templateforward_civicrm_pageRun(&$page) {
+  $page_name = $page->getVar('_name');
+  if (CRM_Templateforward_Config::has_forward($page_name)) {
+    CRM_Templateforward_ForwardHandler::forward($page, $page_name);
+  }
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---

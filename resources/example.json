@@ -1,0 +1,18 @@
+{
+  "CRM_Contact_Page_View_Summary": {
+    "cid": "1",
+    "forward_target": "https:\/\/www.systopia.de"
+  },
+  "CRM_Mailing_Page_Confirm": {
+    "mailing_profiles": [
+      {
+        "group_id": "1",
+        "profile_forward": "https:\/\/www.google.de"
+      },
+      {
+        "group_id": "2",
+        "profile_forward": "https:\/\/www.google.com"
+      }
+    ]
+  }
+}

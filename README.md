@@ -2,7 +2,7 @@
 
 ![Screenshot](/images/screenshot.png)
 
-(*FIXME: In one or two paragraphs, describe what the extension does and why one would download it. *)
+This extension implements page forwards for defined pages. Configuration can be done in Config.php
 
 The extension is licensed under [AGPL-3.0](LICENSE.txt).
 
@@ -37,8 +37,16 @@ cv en templateforward
 
 ## Usage
 
-(* FIXME: Where would a new user navigate to get started? What changes would they see? *)
+- See config file for examples
+- parameters must consist of 'forward_target' with an url to forward to
+- other paramters need to be URL params, otherwise no forwarding will occur
+
+e.g. civicrm/contact/view?reset=1&cid=1
+
+Parameter could be 'cid' : '1'
+
+If reading a file on every page load eats too much time, consider caching the pararmeters in CRM_TemplateForward_Config::$pages. If values are set, no files are read from /resources/*.json
 
 ## Known Issues
 
-(* FIXME *)
+Verification parameters only work for URL params
