@@ -23,5 +23,10 @@
   <comments>Simple extension to forward under certain, configgurable conditions/page hooks. See resources/example.json for configuration examples.</comments>
   <civix>
     <namespace>CRM/Templateforward</namespace>
+    <format>23.02.1</format>
   </civix>
+  <classloader>
+    <psr0 prefix="CRM_" path="."/>
+    <psr4 prefix="Civi\" path="Civi"/>
+  </classloader>
 </extension>
