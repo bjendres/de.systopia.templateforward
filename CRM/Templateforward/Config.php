@@ -40,7 +40,7 @@ class CRM_Templateforward_Config {
           self::$pages[$name] = $data;
         }
       } catch (Exception $e) {
-        CRM_Core_Error::debug_log_message("[de.systopia.forwardtemplate] Error parsing config file {$c_file}. Message: {$e->getMessage()}");
+        Civi::log()->debug("[de.systopia.forwardtemplate] Error parsing config file {$c_file}. Message: {$e->getMessage()}");
       }
     }
   }
