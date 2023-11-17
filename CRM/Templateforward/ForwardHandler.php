@@ -46,7 +46,7 @@ class CRM_Templateforward_ForwardHandler {
           Civi::log()->debug("[de.systopia.templateforward] invalid url Parameters. ContactId: {$contact_id}, subscriberId: {$subscribe_id}, Hash: {$hash}");
           return;
         }
-        $se = &CRM_Mailing_Event_BAO_Subscribe::verify(
+        $se = CRM_Mailing_Event_BAO_MailingEventSubscribe::verify(
           $contact_id,
           $subscribe_id,
           $hash
